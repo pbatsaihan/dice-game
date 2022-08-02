@@ -31,23 +31,55 @@ document.querySelector(".btn-roll").addEventListener("click", function () {
   // Буусан шооны тоотой зургыг гаргана.
   diceDom.src = "dice-" + diceNumber + ".png";
 
-  // Тоглогчийн
+  // Шоо орхиж ээлжийн оноогоо цуглуулах
   if (diceNumber !== 1) {
     roundScore = roundScore + diceNumber;
     document.getElementById("current-" + activePlayer).textContent = roundScore;
   } else {
-    // Энэ тоглогчийн оноог тэглэнэ.
-    roundScore = 0;
-    document.getElementById("current-" + activePlayer).textContent = 0;
-
-    // Идэвхтэй тоглогчийг солих
-    activePlayer === 0 ? (activePlayer = 1) : (activePlayer = 0);
-
-    // Улаан цэгийг солих
-    document.querySelector(".player-0-panel").classList.toggle("active");
-    document.querySelector(".player-1-panel").classList.toggle("active");
-
-    // Шоог түр алга болгох
-    diceDom.style.display = "none";
+    swichPlayer();
   }
 });
+
+// Hold  товчийг дарах үйлдэл
+document.querySelector(".btn-hold").addEventListener("click", function () {
+  // Уг ээлжийн оноог цуглуулах
+  scores[activePlayer] = scores[activePlayer] + roundScore;
+
+  // Дэлгэцийн оноог өөрчилнө
+  document.getElementById("score-" + activePlayer).textContent =
+    scores[activePlayer];
+
+  // Тоглогч хожсон эсэх
+  if (scores[activePlayer] >= 10) {
+    // Ялагчийн нэрийг солино, загварыг өөрчилнө
+    document.getElementById("name-" + activePlayer).textContent = "WINNER!";
+    document
+      .querySelector(".player-" + activePlayer + "-panel")
+      .classList.add("winner");
+    document
+      .querySelector(".player-" + activePlayer + "-panel")
+      .classList.remove("active");
+  } else {
+    // Тоглогчийн ээлжийг солино
+    swichPlayer();
+  }
+});
+
+function swichPlayer() {
+  // Энэ тоглогчийн оноог тэглэнэ.
+  roundScore = 0;
+  document.getElementById("current-" + activePlayer).textContent = 0;
+
+  // Идэвхтэй тоглогчийг солих
+  activePlayer === 0 ? (activePlayer = 1) : (activePlayer = 0);
+
+  // Улаан цэгийг солих
+  document.querySelector(".player-0-panel").classList.toggle("active");
+  document.querySelector(".player-1-panel").classList.toggle("active");
+
+  // Шоог түр алга болгох
+  diceDom.style.display = "none";
+}
+
+// Шинээр эхлүүлэх товчийг ажиллуулах
+document.querySelector(".btn-new").addEventListener("click", function () {});
