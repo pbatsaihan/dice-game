@@ -1,24 +1,48 @@
-// Тоглогчийн ээлжийг хадгалагч
-var activePlayer = 0;
-
-// Тоглогчийн цуглуулсан оноог хадгалагч
-var scores = [0, 0];
-
-// Тоглогчийн цуглуулсан ээлжийн оноог хадгалагч
-var roundScore = 0;
-
-// Шооны буусан оноог хадгалагч 1-6 гэсэн утгыг энэ хувьсагчид санамсаргүй үүсгэж өгнө.
+// Тоглогчийг хадгалагч
+var activePlayer;
+// Хоёр тоглогчийн цуглуулсан оноонууд
+var scores;
+// Идэвхтэй тоглогчийн цуглуулж байгаа ээлжийн оноо
+var roundScore;
+// ДОМ дотроос шоог олж сонгох
 var diceDom = document.querySelector(".dice");
-diceDom.style.display = "none";
 
-// Тогломоо эхлэхэд бэлтгэе
-document.getElementById("score-0").textContent = "0";
-document.getElementById("score-1").textContent = "0";
-document.getElementById("current-0").textContent = "0";
-document.getElementById("current-1").textContent = "0";
+// Тоглоомыг эхлүүлэх
+initGame();
 
-var diceDom = document.querySelector(".dice");
-diceDom.style.display = "none";
+// Тоглоомыг шинээр эхлэхэд бэлгэх
+function initGame() {
+  // Тоглогчийг заах
+  activePlayer = 0;
+
+  // Тоглогчдийн цуглуулсан оноо
+  scores = [0, 0];
+
+  // Тоглогчийн цуглуулсан ээлжийн оноо
+  roundScore = 0;
+
+  // Дэлгэц дээрх оноонуудийг тэглэх
+  document.getElementById("score-0").textContent = "0";
+  document.getElementById("score-1").textContent = "0";
+  document.getElementById("current-0").textContent = "0";
+  document.getElementById("current-1").textContent = "0";
+
+  // Тоглогчийн нэрийг буцаах
+  document.getElementById("name-0").textContent = "Player 1";
+  document.getElementById("name-1").textContent = "Player 2";
+
+  // Нэрийн загварыг буцаах
+  document.querySelector(".player-0-panel").classList.remove("winner");
+  document.querySelector(".player-1-panel").classList.remove("winner");
+
+  // Эхний тоглогчийг идэвхжүүлнэ
+  document.querySelector(".player-1-panel").classList.remove("active");
+  document.querySelector(".player-0-panel").classList.remove("active");
+  document.querySelector(".player-0-panel").classList.add("active");
+
+  // Шооны зургыг дэлгэц дээр байхгүй болгох
+  diceDom.style.display = "none";
+}
 
 // Товч дарах үед шоог орхих
 document.querySelector(".btn-roll").addEventListener("click", function () {
@@ -65,6 +89,7 @@ document.querySelector(".btn-hold").addEventListener("click", function () {
   }
 });
 
+// Тоглогчийг солих
 function swichPlayer() {
   // Энэ тоглогчийн оноог тэглэнэ.
   roundScore = 0;
@@ -82,4 +107,6 @@ function swichPlayer() {
 }
 
 // Шинээр эхлүүлэх товчийг ажиллуулах
-document.querySelector(".btn-new").addEventListener("click", function () {});
+document.querySelector(".btn-new").addEventListener("click", function () {
+  initGame();
+});
