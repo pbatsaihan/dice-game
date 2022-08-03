@@ -88,7 +88,7 @@ document.querySelector(".btn-hold").addEventListener("click", function () {
       scores[activePlayer];
 
     // Тоглогч хожсон эсэх
-    if (scores[activePlayer] >= 10) {
+    if (scores[activePlayer] >= 100) {
       // Тоглоомын төлөв өөрчлөгдөнө
       gameOver = true;
 
