@@ -34,8 +34,8 @@ function initGame() {
   document.getElementById("current-1").textContent = "0";
 
   // Тоглогчийн нэрийг буцаах
-  document.getElementById("name-0").textContent = "Player 1";
-  document.getElementById("name-1").textContent = "Player 2";
+  document.getElementById("name-0").textContent = "Тоглогч 1";
+  document.getElementById("name-1").textContent = "Тоглогч 2";
 
   // Нэрийн загварыг буцаах
   document.querySelector(".player-0-panel").classList.remove("winner");
@@ -72,7 +72,7 @@ document.querySelector(".btn-roll").addEventListener("click", function () {
     }
   } else {
     alert(
-      "Тоглоом дууссан байна. Шинээр эхлэх бол NEW GAME товч дээр дарна уу."
+      "Тоглоом дууссан байна. \nШинээр эхлэх бол эхлэх товч дээр дарна уу."
     );
   }
 });
@@ -93,7 +93,7 @@ document.querySelector(".btn-hold").addEventListener("click", function () {
       gameOver = true;
 
       // Ялагчийн нэрийг солино, загварыг өөрчилнө
-      document.getElementById("name-" + activePlayer).textContent = "WINNER!";
+      document.getElementById("name-" + activePlayer).textContent = "ЯЛАГЧ!";
       document
         .querySelector(".player-" + activePlayer + "-panel")
         .classList.add("winner");
@@ -106,7 +106,7 @@ document.querySelector(".btn-hold").addEventListener("click", function () {
     }
   } else {
     alert(
-      "Тоглоом дууссан байна. Шинээр эхлэх бол NEW GAME товч дээр дарна уу."
+      "Тоглоом дууссан байна. \nШинээр эхлэх бол эхлэх товч дээр дарна уу."
     );
   }
 });
